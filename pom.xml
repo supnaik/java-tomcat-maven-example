@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.example</groupId>
   <!--<artifactId>java-tomcat-maven-example</artifactId>-->
- <artifactId>java-tomcat-maven-example_reliance</artifactId>
+ <artifactId>java-tomcat-maven-example_demo1</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Nissan CICD Pipeline View new</name>
+  <name>Reliance CICD Pipeline View new</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -30,7 +30,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>java-tomcat-maven-example_reliance</finalName>
+    <finalName>java-tomcat-maven-example_demo1</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
