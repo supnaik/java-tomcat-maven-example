@@ -26,17 +26,17 @@ node{
         sh 'docker push rajnikhattarrsinha/javadockerdemo:2.0.0'
       }
 
-   stage('Stop running containers'){        
-         def listContainer='sudo docker ps'
-         def scriptRunner='sudo ./stopscript.sh'
-         def stopContainer='sudo docker stop $(docker ps -a -q)'
-         sshagent(['tomcatdeploymentserver']) {
+   //stage('Stop running containers'){        
+      //   def listContainer='sudo docker ps'
+        // def scriptRunner='sudo ./stopscript.sh'
+         //def stopContainer='sudo docker stop $(docker ps -a -q)'
+         //sshagent(['tomcatdeploymentserver']) {
               //sh "ssh -o StrictHostKeyChecking=no rajni@35.237.148.63 ${scriptRunner}"   
-              sh 'sudo su'
-               sh "${scriptRunner}"
+             // sh 'sudo su'
+           //    sh "${scriptRunner}"
                //
-         }
-    } 
+      //   }
+    //} 
    stage('Pull Docker Image and Deploy'){        
          
             def dockerContainerName = 'javadockerdemo1-$JOB_NAME-$BUILD_NUMBER'
