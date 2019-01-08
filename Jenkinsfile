@@ -16,14 +16,14 @@ node{
       }  
       
     stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/dockerserverdemo:2.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/dockerpipelinedemo:2.0.0 .'
       }  
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/dockerserverdemo:2.0.0'
+        sh 'docker push rajnikhattarrsinha/dockerpipelinedemo:2.0.0'
       }
 
       // stage('Stop running containers'){        
@@ -38,11 +38,11 @@ node{
    stage('Pull Docker Image and Deploy'){        
          
             def dockerContainerName = 'docker-pipeline-$BUILD_NUMBER'
-            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockerserverdemo:2.0.0"         
+            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockerpipelinedemo:2.0.0"         
            // sshagent(['dockerdeployserver2']) {
          sshagent(['dockergcpserver']) {
                   // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
-               sh "ssh -o StrictHostKeyChecking=no rajni@35.231.3.100 ${dockerRun}"
+               sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${dockerRun}"
               
          }
    }
