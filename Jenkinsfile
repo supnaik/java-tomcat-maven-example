@@ -31,7 +31,8 @@ node{
          def scriptRunner='sudo ./stopscript.sh'
          def stopContainer='sudo docker stop $(docker ps -a -q)'
          sshagent(['tomcatdeploymentserver']) {
-              sh "ssh -o StrictHostKeyChecking=no rajni@35.237.148.63 ${scriptRunner}"            
+              //sh "ssh -o StrictHostKeyChecking=no rajni@35.237.148.63 ${scriptRunner}"   
+               sh "${scriptRunner}"
          }
     } 
    stage('Pull Docker Image and Deploy'){        
@@ -39,7 +40,8 @@ node{
             def dockerContainerName = 'javadockerdemo1-$JOB_NAME-$BUILD_NUMBER'
             def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javadockerdemo:2.0.0"         
             sshagent(['tomcatdeploymentserver']) {
-              sh "ssh -o StrictHostKeyChecking=no rajni@35.237.148.63 ${dockerRun}"              
+              //sh "ssh -o StrictHostKeyChecking=no rajni@35.237.148.63 ${dockerRun}"   
+                  sh "${dockerRun}" 
          }
    }
  }
