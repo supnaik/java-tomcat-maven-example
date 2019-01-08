@@ -34,6 +34,7 @@ node{
               //sh "ssh -o StrictHostKeyChecking=no rajni@35.237.148.63 ${scriptRunner}"   
               sh 'sudo su'
                sh "${scriptRunner}"
+               //
          }
     } 
    stage('Pull Docker Image and Deploy'){        
