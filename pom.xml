@@ -30,7 +30,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>java-tomcat-maven-example_dockerpipeline</finalName>
+    <finalName>java-tomcat-maven-example-doctest1</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
