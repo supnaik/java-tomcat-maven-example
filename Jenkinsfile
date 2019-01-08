@@ -31,7 +31,7 @@ node{
         def scriptRunner='sudo ./stopscript.sh'
        // def stopContainer='sudo docker stop $(docker ps -a -q)'
         sshagent(['tomcatdeploymentserver']) {
-              sh "ssh -o StrictHostKeyChecking=no ubuntu@35.231.110.75 ${scriptRunner}"            
+              sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${scriptRunner}"            
          }
     } 
   
