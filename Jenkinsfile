@@ -43,7 +43,7 @@ node{
          sshagent(['dockergcpserver']) {
                   // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
                sh "ssh -o StrictHostKeyChecking=no rajni@35.231.3.100 ${dockerRun}"
-               // //          sh "${dockerRun}"
+              
          }
    }
  }
