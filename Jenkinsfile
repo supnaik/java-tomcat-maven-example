@@ -26,6 +26,14 @@ node{
         sh 'docker push rajnikhattarrsinha/dockertomcatdemo:2.0.0'
       }
 
+      // stage('Stop running containers'){        
+       //  def listContainer='sudo docker ps'
+       //  def scriptRunner='sudo ./stopscript.sh'
+       //  def stopContainer='sudo docker stop $(docker ps -a -q)'
+        // sshagent(['dockerdeployserver2']) {
+              //sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${scriptRunner}"            
+        // }
+   // } 
   
    stage('Pull Docker Image and Deploy'){        
          
@@ -33,7 +41,8 @@ node{
             def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockertomcatdemo:2.0.0"         
            // sshagent(['dockerdeployserver2']) {
          sshagent(['tomcatdeploymentserver']) {
-                   sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}"              
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}"  
+               sh "${dockerRun}"
          }
    }
  }
