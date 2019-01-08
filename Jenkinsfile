@@ -40,7 +40,7 @@ node{
             def dockerContainerName = 'docker-pipeline-$BUILD_NUMBER'
             def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockerpipelinedemo:2.0.0"         
            // sshagent(['dockerdeployserver2']) {
-         sshagent(['dockergcpserver']) {
+         sshagent(['tomcatdeploymentserver']) {
                   // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
                sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${dockerRun}"
               
