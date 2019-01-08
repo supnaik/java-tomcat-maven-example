@@ -16,14 +16,14 @@ node{
       }  
       
     stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/javatomcat1reliancedemo20:2.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/dockertomcatdemo:2.0.0 .'
       }  
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/javatomcat1reliancedemo20:2.0.0'
+        sh 'docker push rajnikhattarrsinha/dockertomcatdemo:2.0.0'
       }
 
    stage('Stop running containers'){        
@@ -31,15 +31,15 @@ node{
          def scriptRunner='sudo ./stopscript.sh'
          def stopContainer='sudo docker stop $(docker ps -a -q)'
          sshagent(['dockerdeployserver2']) {
-              sh "ssh -o StrictHostKeyChecking=no ubuntu@35.168.86.36 ${scriptRunner}"            
+              sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${scriptRunner}"            
          }
     } 
    stage('Pull Docker Image and Deploy'){        
          
-            def dockerContainerName = 'javatomcatsampledemo1-$JOB_NAME-$BUILD_NUMBER'
-            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/javatomcat1reliancedemo20:2.0.0"         
+            def dockerContainerName = 'dockertomcatdemocontainer-$JOB_NAME-$BUILD_NUMBER'
+            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockertomcatdemo:2.0.0"         
             sshagent(['dockerdeployserver2']) {
-              sh "ssh -o StrictHostKeyChecking=no ubuntu@35.168.86.36 ${dockerRun}"              
+              sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}"              
          }
    }
  }
