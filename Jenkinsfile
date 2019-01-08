@@ -41,8 +41,9 @@ node{
             def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockertomcatdemo:2.0.0"         
            // sshagent(['dockerdeployserver2']) {
          sshagent(['tomcatdeploymentserver']) {
-                   sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}"  
-               sh "${dockerRun}"
+                  // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
+               sh "ssh -o StrictHostKeyChecking=no ubuntu@35.237.148.63 ${dockerRun}"
+               //           sh "${dockerRun}"
          }
    }
  }
