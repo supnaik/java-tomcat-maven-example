@@ -43,7 +43,7 @@ node{
          sshagent(['tomcatdeploymentserver']) {
                   // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
                sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${dockerRun}"
-               //           sh "${dockerRun}"
+               // //          sh "${dockerRun}"
          }
    }
  }
