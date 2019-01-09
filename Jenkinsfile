@@ -26,14 +26,14 @@ node{
         sh 'docker push rajnikhattarrsinha/dockerserverdemo09:2.0.0'
       }
 
-       stage('Stop running containers'){        
+      // stage('Stop running containers'){        
        //def listContainer='sudo docker ps'
-        def scriptRunner='sudo ./stopscript.sh'
+      //  def scriptRunner='sudo ./stopscript.sh'
        // def stopContainer='sudo docker stop $(docker ps -a -q)'
-        sshagent(['dockergcpserver']) {
-              sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${scriptRunner}"            
-         }
-    } 
+       // sshagent(['dockergcpserver']) {
+       //       sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${scriptRunner}"            
+        // }
+   // } 
   
    stage('Pull Docker Image and Deploy'){        
          
