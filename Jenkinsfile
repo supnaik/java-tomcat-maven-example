@@ -26,23 +26,24 @@ node{
         sh 'docker push rajnikhattarrsinha/dockerserverdemo09:2.0.0'
       }
 
-      // stage('Stop running containers'){        
+       stage('Stop running containers'){        
        //def listContainer='sudo docker ps'
-      //  def scriptRunner='sudo ./stopscript.sh'
+       def scriptRunner='sudo ./stopscript.sh'
        // def stopContainer='sudo docker stop $(docker ps -a -q)'
+       sshagent(['dockerdeployserver2']) {
        // sshagent(['dockergcpserver']) {
-       //       sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${scriptRunner}"            
-        // }
-   // } 
+              sh "ssh -o StrictHostKeyChecking=no ubuntu@18.204.17.113 ${scriptRunner}"            
+         }
+    } 
   
    stage('Pull Docker Image and Deploy'){        
          
             def dockerContainerName = 'docker-pipeline-$BUILD_NUMBER'
             def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/dockerserverdemo09:2.0.0"         
-           // sshagent(['dockerdeployserver2']) {
-         sshagent(['dockergcpserver']) {
+           sshagent(['dockerdeployserver2']) {
+        // sshagent(['dockergcpserver']) {
                  // // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
-               sh "ssh -o StrictHostKeyChecking=no root@35.196.19.161 ${dockerRun}"
+               sh "ssh -o StrictHostKeyChecking=no ubuntu@18.204.17.113 ${dockerRun}"
               
          }
    }
