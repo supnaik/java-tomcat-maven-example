@@ -33,7 +33,7 @@ node{
       // sshagent(['dockerdeployserver2']) {
        sshagent(['tomcatdeploymentserver']) {             
        // sshagent(['dockergcpserver']) {
-              sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${scriptRunner}"            
+              sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${scriptRunner}"            
          }
     } 
   
@@ -45,7 +45,7 @@ node{
         // sshagent(['dockergcpserver']) {
               sshagent(['tomcatdeploymentserver']) {   
                  // // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
-               sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${dockerRun}"
+               sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${dockerRun}"
               
          }
    }
