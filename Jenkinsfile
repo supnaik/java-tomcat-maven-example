@@ -29,7 +29,7 @@ node{
       // stage('Stop running containers'){        
       // def scriptRunner='sudo ./stopscript.sh'
       // sshagent(['tomcatdeploymentserver']) {             
-             // sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${scriptRunner}"            
+             // sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${scriptRunner}"            
       //   }
     // } 
   
@@ -37,7 +37,7 @@ node{
             def dockerContainerName = 'docker-$JOB_NAME-$BUILD_NUMBER'
             def dockerRun= "sudo docker run -p 8080:9091 -d --name ${dockerContainerName} rajnikhattarrsinha/docker1701:2.0.0"         
                sshagent(['tomcatdeploymentserver']) {   
-               sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${dockerRun}"
+               sh "ssh -o StrictHostKeyChecking=no rajni@35.196.19.161 ${dockerRun}"
              }
       }
  }
