@@ -16,14 +16,14 @@ node{
       }  
       
     stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/tomcatdocker09:2.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/tomcatdocker0802:2.0.0 .'
       }  
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/tomcatdocker09:2.0.0'
+        sh 'docker push rajnikhattarrsinha/tomcatdocker0802:2.0.0'
       }
 
        stage('Stop running containers'){        
@@ -33,19 +33,19 @@ node{
       // sshagent(['dockerdeployserver2']) {
        sshagent(['tomcatdeploymentserver']) {             
        // sshagent(['dockergcpserver']) {
-              sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${scriptRunner}"            
+              sh "ssh -o StrictHostKeyChecking=no rajni@35.229.120.250 ${scriptRunner}"            
          }
     } 
   
    stage('Pull Docker Image and Deploy'){        
          
             def dockerContainerName = 'docker-$JOB_NAME-$BUILD_NUMBER'
-            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/tomcatdocker09:2.0.0"         
+            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/tomcatdocker0802:2.0.0"         
            //sshagent(['dockerdeployserver2']) {
         // sshagent(['dockergcpserver']) {
               sshagent(['tomcatdeploymentserver']) {   
                  // // sh "ssh -o StrictHostKeyChecking=no ubuntu@54.144.118.163 ${dockerRun}" 
-               sh "ssh -o StrictHostKeyChecking=no rajni@35.231.110.75 ${dockerRun}"
+               sh "ssh -o StrictHostKeyChecking=no rajni@35.229.120.250 ${dockerRun}"
               
          }
    }
