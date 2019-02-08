@@ -16,14 +16,14 @@ node{
       }  
       
     stage('Build Docker Image'){
-         sh 'docker build -t rajnikhattarrsinha/tomcatdocker0802:2.0.0 .'
+         sh 'docker build -t rajnikhattarrsinha/tomcatdockerdemo0802:2.0.0 .'
       }  
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
               sh "docker login -u rajnikhattarrsinha -p ${dockerPWD}"
          }
-        sh 'docker push rajnikhattarrsinha/tomcatdocker0802:2.0.0'
+        sh 'docker push rajnikhattarrsinha/tomcatdockerdemo0802:2.0.0'
       }
 
        stage('Stop running containers'){        
@@ -40,7 +40,7 @@ node{
    stage('Pull Docker Image and Deploy'){        
          
             def dockerContainerName = 'docker-$JOB_NAME-$BUILD_NUMBER'
-            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/tomcatdocker0802:2.0.0"         
+            def dockerRun= "sudo docker run -p 8080:8080 -d --name ${dockerContainerName} rajnikhattarrsinha/tomcatdockerdemo0802:2.0.0"         
            //sshagent(['dockerdeployserver2']) {
         // sshagent(['dockergcpserver']) {
               sshagent(['tomcatdeploymentserver']) {   
