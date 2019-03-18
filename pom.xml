@@ -6,12 +6,9 @@
  <artifactId>java-tomcat-maven-example</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Reliance CICD Pipeline View new</name>
+  <name>CICD Pipeline View</name>
   <url>http://maven.apache.org</url>
-  <properties>
-<maven.compiler.source>1.6</maven.compiler.source>
-<maven.compiler.target>1.6</maven.compiler.target>
- </properties>
+  
 	<dependencies>
     <dependency>
     <groupId>javax.servlet</groupId>
@@ -26,7 +23,7 @@
       <scope>test</scope>
     </dependency>
 -->
-<dependency>
+   <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
@@ -34,7 +31,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>java-tomcat-maven-example-demopipelinetest</finalName>
+    <finalName>demopipeline</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -65,7 +62,31 @@
                  <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
             </configuration>
             <version>3.0.0-M1</version>
-        </plugin>
+      </plugin>
+     <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.2</version>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+     </plugin>
     </plugins>
   </build>
+<properties>
+	<maven.compiler.source>1.8</maven.compiler.source>
+	<maven.compiler.target>1.8</maven.compiler.target>
+ </properties>
 </project>
